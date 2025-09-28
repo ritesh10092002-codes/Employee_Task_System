@@ -1,0 +1,42 @@
+package com.example.TaskService.controller;
+
+import com.example.TaskService.entity.Task;
+import com.example.TaskService.service.TaskService;
+import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+
+@RestController
+@RequestMapping("/task")
+@RequiredArgsConstructor
+public class TaskController {
+
+    private final TaskService taskService;
+
+    @PostMapping
+    public ResponseEntity<Task> createTask(@RequestBody Task task){
+        return  ResponseEntity.ok(taskService.createTask(task));
+    }
+
+    @GetMapping("/employee/{employe_id}")
+    public List<Task> getTaskForEmployee(@PathVariable Long employe_id){
+          return taskService.getTaskForEmployee(employe_id);
+    }
+
+    @PutMapping("/{id}")
+    public Task updateTaskStatus(@PathVariable Long id, @RequestBody Task task) {
+        return taskService.updateTaskStatus(id, task);
+    }
+
+    @GetMapping
+    public List<Task> getAllTasks() {
+        return taskService.getAllTasks();
+    }
+    @DeleteMapping("/{id}")
+    public void deleteTask(@PathVariable Long id) {
+        taskService.deleteTask(id);
+    }
+
+}

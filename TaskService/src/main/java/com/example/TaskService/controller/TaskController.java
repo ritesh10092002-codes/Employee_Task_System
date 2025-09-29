@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/task")
+//@RequestMapping("/task")
 @RequiredArgsConstructor
 public class TaskController {
 
@@ -25,16 +25,16 @@ public class TaskController {
           return taskService.getTaskForEmployee(employe_id);
     }
 
-    @PutMapping("/{id}")
+    @PutMapping("employee/{id}")
     public Task updateTaskStatus(@PathVariable Long id, @RequestBody Task task) {
         return taskService.updateTaskStatus(id, task);
     }
 
-    @GetMapping
+    @GetMapping("/admin")
     public List<Task> getAllTasks() {
         return taskService.getAllTasks();
     }
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/admin/{id}")
     public void deleteTask(@PathVariable Long id) {
         taskService.deleteTask(id);
     }

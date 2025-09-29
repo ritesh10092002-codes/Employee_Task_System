@@ -15,7 +15,7 @@ public class TaskController {
 
     private final TaskService taskService;
 
-    @PostMapping
+    @PostMapping("/admin")
     public ResponseEntity<Task> createTask(@RequestBody Task task){
         return  ResponseEntity.ok(taskService.createTask(task));
     }
